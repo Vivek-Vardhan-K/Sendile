@@ -1,0 +1,54 @@
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.inner {
+  width: 50%;
+  margin: 0 25%;
+}
+.logo-pos {
+  position: relative;
+  margin-top: 10%;
+  width: 15%;
+  height: auto;
+}
+.form-inp {
+  max-width: 50%;
+  margin-left: 25%;
+}
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #3498db;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+  z-index: 2;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.gravy {
+  margin-bottom: 0%;
+}
+
+.page-full {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+}
