@@ -11,6 +11,7 @@ import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
 import { useDispatch } from "react-redux";
 import "react-notifications/lib/notifications.css";
+import cst from "../constants/constants";
 import {
   NotificationContainer,
   NotificationManager,
@@ -27,40 +28,40 @@ function Results(props) {
       type: "SWITCH_LOADING",
     });
   };
-  const byCaller = (id, name, searchText) => {
+  console.log(props.bookData);
+  const byCaller=(mirrorLink,title)=>{
+    console.log(mirrorLink);
+    console.log(email);
     axios({
       method: "post",
-      url: "https://teleportx.herokuapp.com/download/" + name,
+      url: cst.base_url+"send-to-kindle/",
       data: {},
       headers: {
-        bookID: id,
-        Token: token,
-        search4: searchText,
-        keymail: email,
+        kindleEmail: email,
+        resLink: mirrorLink
       },
     }).then(
-      NotificationManager.success("Sent to Kindle", name).catch((error) => {
-        NotificationManager.error(error, "Internal error:500");
-      })
+      NotificationManager.success("Sent to Kindle", title)
     );
-  };
-  if (props.bookData.data != undefined) {
-    var listItems = props.bookData.data.map((elem, idx) => (
-      <tr key={idx} scope="row">
-        <td className="rowdet">{idx + 1}</td>
+  }
+  if (props.bookData !== undefined) {
+    console.log("came here");
+    var listItems = props.bookData.map((elem) => (
+      <tr key={elem.id} scope="row">
+        <td className="rowdet">{elem.id}</td>
         <td className="rowdet">
-          <a href="#">{elem.Author}</a>
+          <a href="#">{elem.author}</a>
         </td>
-        <td className="rowdet">{elem.Title}</td>
-        <td className="rowdet">{elem.Year}</td>
-        <td className="rowdet">{elem.Size}</td>
+        <td className="rowdet">{elem.title}</td>
+        <td className="rowdet">{elem.year}</td>
+        <td className="rowdet">{elem.size}</td>
         <td className="rowdet">
           <a href="#" title="">
             <img
               src={icon}
               className="resz zoom"
               onClick={() => {
-                byCaller(elem.ID, elem.Title, elem.search4);
+                byCaller(elem.mirror1,elem.title);
               }}
             />
           </a>

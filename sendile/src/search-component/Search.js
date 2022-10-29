@@ -10,6 +10,7 @@ import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
 import { useDispatch } from "react-redux";
 import LandFooter from "../footer/LandFooter";
+import cst from "../constants/constants";
 
 function Search() {
   const [input, setInput] = useState("");
@@ -22,7 +23,7 @@ function Search() {
   const handleTabClosing = () => {
     axios({
       method: "delete",
-      url: `https://teleportx.herokuapp.com/removeToken/` + token,
+      url: cst.base_url+`removeToken/` + token,
     });
   };
   console.log(email);
@@ -35,11 +36,8 @@ function Search() {
     });
     axios({
       method: "get",
-      url: `https://teleportx.herokuapp.com/search/` + inp,
+      url: cst.base_url+`/search-by-title/` + inp,
       data: {},
-      headers: {
-        Token: token,
-      },
     }).then((res) => {
       dispatch({
         type: "SWITCH_LOADING",
